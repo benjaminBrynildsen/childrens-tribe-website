@@ -55,6 +55,39 @@ The site uses decorative SVG illustrations as placeholders. To add real photos:
    - `summer-program.jpg` — summer page
    - `hero.jpg` — can replace the `.card-stack` on the homepage hero
 
+## Hooking up the contact + tour-request forms (Google Forms)
+
+Both `contact.html` and `admissions.html` have forms that submit silently to Google Forms — visitors stay on the page and see a thank-you message. Responses land in your Google Form's Responses tab (and optionally a Google Sheet).
+
+**One-time setup (~10 minutes per form):**
+
+1. Go to [forms.google.com](https://forms.google.com) and create two forms:
+   - **Contact form** with fields: *Your name*, *Email*, *Subject*, *Message*
+   - **Tour request form** with fields: *Your name*, *Email*, *Phone*, *Child's age / grade*, *Anything you'd like us to know?*
+   - Set each field type to "Short answer" (or "Paragraph" for Message/Notes). Mark name + email as required.
+
+2. For each form, click the **⋮ menu → Get pre-filled link**. Type placeholder text into every field (e.g. "TEST"), then click **Get link** → **Copy link**.
+
+3. The copied URL looks like:
+   ```
+   https://docs.google.com/forms/d/e/1FAIpQLSxxxxxxxxxxxxxxxxxxxxx/viewform?usp=pp_url&entry.123456789=TEST&entry.987654321=TEST...
+   ```
+   From it, grab:
+   - The **FORM_ID** — the long string between `/e/` and `/viewform` (e.g. `1FAIpQLSxxxxxxxxxxxxxxxxxxxxx`)
+   - Each **entry.XXXXXXXXX** number — one per field, in the order they appear
+
+4. Open `contact.html` and replace:
+   - `REPLACE_WITH_CONTACT_FORM_ID` → your contact FORM_ID
+   - `entry.REPLACE_NAME`, `entry.REPLACE_EMAIL`, `entry.REPLACE_SUBJECT`, `entry.REPLACE_MESSAGE` → matching entry numbers
+
+5. Open `admissions.html` and replace:
+   - `REPLACE_WITH_TOUR_FORM_ID` → your tour form FORM_ID
+   - `entry.REPLACE_PARENT`, `entry.REPLACE_EMAIL`, `entry.REPLACE_PHONE`, `entry.REPLACE_AGE`, `entry.REPLACE_NOTES` → matching entry numbers
+
+6. Commit and push. To get email notifications, open the form → **Responses** tab → **⋮ menu → Get email notifications for new responses**.
+
+Test by submitting the live form and confirming the response shows up in Google Forms.
+
 ## Editing content
 
 All content is inline in the HTML files — no CMS. Open any page and edit text directly. Contact info and address live in the footer of every page.

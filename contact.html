@@ -53,14 +53,20 @@
             <li><span class="contact-label">Social</span><a href="https://www.facebook.com/montessorifarmschool/" rel="noopener">Facebook</a></li>
           </ul>
         </div>
-        <form class="tour-form" onsubmit="event.preventDefault(); this.querySelector('.form-msg').textContent='Thank you — we\\'ll get back to you soon.'; this.reset();">
-          <div class="field"><label for="name">Your name</label><input id="name" required /></div>
-          <div class="field"><label for="email3">Email</label><input id="email3" type="email" required /></div>
-          <div class="field"><label for="subject">Subject</label><input id="subject" /></div>
-          <div class="field"><label for="msg">Message</label><textarea id="msg" rows="5" required></textarea></div>
+        <!-- Google Forms wiring: replace FORM_ID and each entry.XXXXX — see README -->
+        <form class="tour-form"
+              action="https://docs.google.com/forms/d/e/REPLACE_WITH_CONTACT_FORM_ID/formResponse"
+              method="POST"
+              target="ct-hidden-iframe"
+              data-thank-you="Thank you — we'll get back to you soon.">
+          <div class="field"><label for="name">Your name</label><input id="name" name="entry.REPLACE_NAME" required /></div>
+          <div class="field"><label for="email3">Email</label><input id="email3" type="email" name="entry.REPLACE_EMAIL" required /></div>
+          <div class="field"><label for="subject">Subject</label><input id="subject" name="entry.REPLACE_SUBJECT" /></div>
+          <div class="field"><label for="msg">Message</label><textarea id="msg" name="entry.REPLACE_MESSAGE" rows="5" required></textarea></div>
           <button type="submit" class="btn btn-primary">Send Message</button>
           <p class="form-msg" aria-live="polite"></p>
         </form>
+        <iframe name="ct-hidden-iframe" style="display:none;" title="Form submission" tabindex="-1" aria-hidden="true"></iframe>
       </div>
     </section>
 

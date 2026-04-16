@@ -22,6 +22,21 @@
     });
   }
 
+  document.querySelectorAll('form.tour-form[action*="docs.google.com/forms"]').forEach((form) => {
+    let submitted = false;
+    form.addEventListener('submit', () => { submitted = true; });
+    const iframe = document.querySelector(`iframe[name="${form.target}"]`);
+    if (iframe) {
+      iframe.addEventListener('load', () => {
+        if (!submitted) return;
+        const msg = form.querySelector('.form-msg');
+        if (msg) msg.textContent = form.dataset.thankYou || 'Thanks — your message was sent.';
+        form.reset();
+        submitted = false;
+      });
+    }
+  });
+
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 

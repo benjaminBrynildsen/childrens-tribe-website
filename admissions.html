@@ -65,15 +65,21 @@
           <p><strong>Phone:</strong> <a href="tel:+16184660399">(618) 466-0399</a><br/>
           <strong>Email:</strong> <a href="mailto:info@childrenstribe.org">info@childrenstribe.org</a></p>
         </div>
-        <form class="tour-form" onsubmit="event.preventDefault(); this.querySelector('.form-msg').textContent='Thank you — we\\'ll be in touch within two business days.'; this.reset();">
-          <div class="field"><label for="parent">Your name</label><input id="parent" name="parent" required /></div>
-          <div class="field"><label for="email2">Email</label><input id="email2" type="email" name="email" required /></div>
-          <div class="field"><label for="phone">Phone</label><input id="phone" type="tel" name="phone" /></div>
-          <div class="field"><label for="age">Child's age / grade</label><input id="age" name="age" /></div>
-          <div class="field"><label for="notes">Anything you'd like us to know?</label><textarea id="notes" name="notes" rows="4"></textarea></div>
+        <!-- Google Forms wiring: replace FORM_ID and each entry.XXXXX — see README -->
+        <form class="tour-form"
+              action="https://docs.google.com/forms/d/e/REPLACE_WITH_TOUR_FORM_ID/formResponse"
+              method="POST"
+              target="ct-hidden-iframe"
+              data-thank-you="Thank you — we'll be in touch within two business days.">
+          <div class="field"><label for="parent">Your name</label><input id="parent" name="entry.REPLACE_PARENT" required /></div>
+          <div class="field"><label for="email2">Email</label><input id="email2" type="email" name="entry.REPLACE_EMAIL" required /></div>
+          <div class="field"><label for="phone">Phone</label><input id="phone" type="tel" name="entry.REPLACE_PHONE" /></div>
+          <div class="field"><label for="age">Child's age / grade</label><input id="age" name="entry.REPLACE_AGE" /></div>
+          <div class="field"><label for="notes">Anything you'd like us to know?</label><textarea id="notes" name="entry.REPLACE_NOTES" rows="4"></textarea></div>
           <button type="submit" class="btn btn-primary">Request a Tour</button>
           <p class="form-msg" aria-live="polite"></p>
         </form>
+        <iframe name="ct-hidden-iframe" style="display:none;" title="Form submission" tabindex="-1" aria-hidden="true"></iframe>
       </div>
     </section>
 
