@@ -334,9 +334,9 @@ p { margin: 0 0 1rem; }
     z-index: 102;
   }
   .primary-nav.open { transform: translateX(0); }
-  .primary-nav ul { flex-direction: column; align-items: stretch; gap: 4px; }
-  .primary-nav a { padding: 14px 16px; font-size: 1.05rem; border-radius: 10px; }
-  .primary-nav a.btn { margin-top: 10px; }
+  .primary-nav ul { flex-direction: column; align-items: stretch; gap: 6px; }
+  .primary-nav a { padding: 20px 20px; font-size: 1.6rem; font-family: var(--font-display); font-weight: 500; border-radius: 12px; }
+  .primary-nav a.btn { margin-top: 20px; padding: 20px 28px; font-size: 1.15rem; font-family: var(--font-body); font-weight: 600; text-align: center; }
   .section { padding: 60px 0; }
   .cta-inner { flex-direction: column; align-items: flex-start; text-align: left; }
   .program-grid { grid-template-columns: 1fr; }
